@@ -1,0 +1,55 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}{% block title-meta %}
+گزارش روز جاری
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        {% if object_list %}
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+
+                <table class="table table-hover">
+
+                    <thead style="background-color:;">
+                    <tr>
+                        <th>عنوان</th>
+                        <th>تاریخ برگزاری</th>
+                        <th>ساعت شروع</th>
+                        <th>ساعت پایان</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for event in dailypersonalevent %}
+                    <tr>
+                        <td>
+                            {{event.title}}
+                        </td>
+                        <td>
+                            {{event.date}}
+                        </td>
+                        <td>
+                            {{event.start_time}}
+                        </td>
+                        <td>
+                            {{event.end_time}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        {% else %}
+        <p class="card card-primary">امروز رویدادی ندارید.</p>
+        {% endif %}
+        <!-- /.card -->
+    </div>
+</div>
+{% endblock %}

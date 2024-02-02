@@ -1,0 +1,34 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{% block title-meta %}
+افزودن رویداد
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن رویداد</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        {{form.title|as_crispy_field}}
+                    </div>
+                    <div class="col-6">
+                        {{form.date|as_crispy_field}}
+                    </div>
+                    <div class="col-6">
+                        {{form.start_time|as_crispy_field}}
+                    </div>
+                    <div class="col-6">
+                        {{form.end_time|as_crispy_field}}
+                    </div>
+                </div>
+                <button class="btn btn-success">افزودن</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

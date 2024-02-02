@@ -1,0 +1,32 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{% block title-meta %}
+ثبت ترم
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">ثبت ترم</h3>
+        </div>
+        <div class="card-body">
+            <form method="post">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        {{form.name|as_crispy_field}}
+                    </div>
+                    <div class="col-6">
+                        {{form.start_date|as_crispy_field}}
+                    </div>
+                    <div class="col-6">
+                        {{form.end_date|as_crispy_field}}
+                    </div>
+
+                </div>
+                <button class="btn btn-success">ثبت ترم</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

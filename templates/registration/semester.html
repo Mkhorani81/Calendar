@@ -1,0 +1,54 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}{% block title-meta %}
+ترم
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        {% if object_list %}
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+
+                <table class="table table-hover">
+
+                    <thead style="background-color:;">
+                    <tr>
+                        <th>ترم</th>
+                        <th>تاریخ شروع</th>
+                        <th>تاریخ پایان</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for semester in object_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'account:updatesemester' semester.pk %}" style="color:black;">
+                                {{semester.name}}
+                            </a>
+                        </td>
+                        <td>
+                            {{semester.start_date}}
+                        </td>
+                        <td>
+                            {{semester.end_date}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        {% else %}
+        <p class="card card-primary">ترمی ثبت نشده است</p>
+        {% endif %}
+        <!-- /.card -->
+    </div>
+</div>
+{% endblock %}

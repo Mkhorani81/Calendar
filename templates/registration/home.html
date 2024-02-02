@@ -1,0 +1,80 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}{% block title-meta %}
+دروس اخذ شده
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        {% if object_list %}
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+
+                <table class="table table-hover">
+
+                    <thead style="background-color:;">
+                    <tr>
+                        <th>عنوان درس</th>
+                        <th>ساعت شروع</th>
+                        <th>ساعت پایان</th>
+                        <th>روز برگزاری</th>
+                        <th>نوع هفته</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for subject in object_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'account:updatesubject' subject.pk %}" style="color:black;">
+                                {{subject.title}}
+                            </a>
+                        </td>
+                        <td>{{subject.start_time}}</td>
+                        <td>{{subject.end_time}}</td>
+                        <td>
+                            {% if subject.day == '0' %}
+                            شنبه
+                            {% elif subject.day == '1' %}
+                            یکشنبه
+                            {% elif subject.day == '2' %}
+                            دوشنبه
+                            {% elif subject.day == '3' %}
+                            سه شنبه
+                            {% elif subject.day == '4' %}
+                            چهارشنبه
+                            {% elif subject.day == '5' %}
+                            پنجشنبه
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if subject.status == 'f' %}
+                            فرد
+                            {% elif subject.status == 'z' %}
+                            زوج
+                            {% else %}
+                            هرهفته
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="badge text-danger" href="{% url 'account:deletesubject' subject.pk %}">
+                                حذف
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        {% else %}
+        <p class="card card-primary">هنوز درسی اخد نشده است.</p>
+        {% endif %}
+        <!-- /.card -->
+    </div>
+</div>
+{% endblock %}

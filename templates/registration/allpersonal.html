@@ -1,0 +1,59 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}{% block title-meta %}
+تمامی رویدادها
+{% endblock %}{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-12">
+        {% if object_list %}
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+
+                <table class="table table-hover">
+
+                    <thead style="background-color:;">
+                    <tr>
+                        <th>عنوان رویداد</th>
+                        <th>تاریخ برگزاری</th>
+                        <th>ساعت شروع</th>
+                        <th>ساعت پایان</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for event in object_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'account:updatepersonal' event.pk %}" style="color:black;">
+                                {{event.title}}
+                            </a>
+                        </td>
+                        <td>{{event.date}}</td>
+                        <td>{{event.start_time}}</td>
+                        <td>
+                            {{event.end_time}}
+                        </td>
+                        <td>
+                            <a class="badge text-danger" href="{% url 'account:deletepersonal' event.pk %}">
+                                حذف
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+        {% else %}
+        <p class="card card-primary">هنوز درسی اخد نشده است.</p>
+        {% endif %}
+        <!-- /.card -->
+    </div>
+</div>
+{% endblock %}
