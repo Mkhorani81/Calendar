@@ -8,8 +8,8 @@ from django.template.loader import render_to_string
 from account.tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_str, force_bytes
-from django.contrib.auth.views import LoginView
-from account.forms import CustomLoginForm
+from django.contrib.auth.views import LoginView,PasswordChangeView
+from account.forms import CustomLoginForm,ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     CreateView,
@@ -149,3 +149,18 @@ class Login(LoginView):
         self.user = form.get_user()
         login(self.request, self.user)
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('account:profile')
+
+
+class Profile(LoginRequiredMixin,UpdateView):
+    model = UserInfo
+    template_name = 'registration/profile.html'
+    form_class = ProfileForm
+    success_url = reverse_lazy('account:profile')
+
+    def get_object(self):
+        return UserInfo.objects.get(pk=self.request.user.pk)
+
+

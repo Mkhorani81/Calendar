@@ -21,11 +21,13 @@ from account.views import Login
 
 urlpatterns = [
     path('', Login.as_view(), name='login'),
+    path('',include('django.contrib.auth.urls')),
     path("admin/", admin.site.urls),
     path('account/', include('account.urls')),
     path('eventCal/', include('eventCal.urls')),
     path('register/', Register.as_view(), name='register'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
     path('captcha/', include('captcha.urls')),
+    path('',include('social_django.urls', namespace='social')),
 
 ]

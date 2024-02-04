@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404
 
 
 class DailySubjectReport(ListView):
-    # paginate_by = 6
     model = SubjectEvent
     template_name = 'calendar/daily_subject_report.html'
     context_object_name = 'dailysubreport'
@@ -19,7 +18,6 @@ class DailySubjectReport(ListView):
         queryset = SubjectEvent.objects.daily_report().filter(user=current_user, day=str(current_day)).order_by(
             'status')
         return queryset
-
 
 class EvenWeekSubjectReport(ListView):
     model = SubjectEvent
@@ -55,9 +53,7 @@ class DailyPersonalReport(ListView):
         queryset = PersonalEvent.objects.filter(user=current_user, date=timezone.now().date()).order_by('date',
                                                                                                         'start_time',
                                                                                                         'end_time')
-
         return queryset
-
 
 class PeriodPersonalEvent(ListView):
     model = PersonalEvent
