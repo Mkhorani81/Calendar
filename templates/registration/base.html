@@ -55,9 +55,9 @@
     </ul>
     <ul class="navbar-nav mr-auto-navbav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
+        <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+          <button class="fas fa-sign-out-alt"></button>
+        </form>
       </li>
     </ul>
   </nav>

@@ -93,6 +93,8 @@
                 </div>
                 <br>
 
+                <a class="myfont" href="{% url 'password_reset' %}">فراموشی گذرواژه</a>
+
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
@@ -102,7 +104,13 @@
                     </div>
                 </div>
 
-
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn social-login text-center ">
+                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="google">
+                            <span class="fa fa-google"></span>
+                        </a>
+                    </div>
+                </div>
                 <br>
                 <a class="myfont" href="{% url 'register' %}">ثبت نام کنید</a>
             </form>
